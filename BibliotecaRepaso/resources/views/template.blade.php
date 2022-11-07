@@ -20,10 +20,16 @@
     {{-- link de material symbols --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
+    {{-- link SweetAlert --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     
   {{-- Navbar --}}
+
+@yield('Navbar')
+
 <div class="container">
 
   <header class="blog-header lh-1 py-3">
@@ -34,7 +40,7 @@
       </div>
 
       <div class="col-4 text-center">
-        <a class="blog-header-logo text-dark" href="#">Bibliothek</a>
+        <a class="blog-header-logo text-dark" href="#">Bibliotek</a>
       </div>
 
       <div class="col-4 pt-1"></div>
@@ -45,8 +51,10 @@
 
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
-      <a class="p-2 link-secondary" href="#">Pagina Inicio</a>
-      <a class="p-2 link-secondary" href="#">Registrar Libro</a>
+      <a class="p-2 link-secondary" style="font-weight: {{request() -> routeIS('/') ? 'bold': ''}}"
+        href="/">Pagina Inicio</a>
+      <a class="p-2 link-secondary" style="font-weight: {{request() -> routeIS('form') ? 'bold': ''}}"
+        href="form">Registrar Libro</a>
       <a class="p-2 link-secondary" href="#">Sistema Busqueda</a>
       <a class="p-2 link-secondary" href="#">Noticias</a>
     </nav>
@@ -54,66 +62,18 @@
 </div>
 
 {{-- Body --}}
-<main class="container">
-
-  {{-- articulo destacado --}}
-  <div class="destacado">
-  <div class="p-4 p-md-5 mb-4 rounded">
-    <div class="col-md-6 px-0">
-      <h1 class="display-4 fst-italic">Noticia del Dia</h1>
-      <p class="text-white lead my-3" style="font-size: 2.25rem">Los libros que son demasiado "peligrosos" para ser leídos</p>
-      <p class="lead mb-0"><a href="https://www.bbc.com/mundo/vert-cul-63007647" class="text-white fw-bold">Seguir leyendo...</a></p>
-    </div>
-  </div>
-  </div>
-
-  {{-- cards --}}
-  <div class="row mb-2">
-
-    <div class="col-md-6">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <h3 class="mb-0">Noticias</h3>
-          <div class="mb-1 text-muted">28 Oct</div>
-          <p class="card-text mb-auto">George R.R. Martin está demasiado ocupado escribiendo "Vientos de invierno" para jugar "Elder Ring"</p>
-          <a href="https://www.forbes.com/sites/danidiplacido/2022/10/28/george-rr-martin-is-too-busy-writing-winds-of-winter-to-play-elden-ring/?sh=18c3c2a041e9" class="stretched-link">Seguir leyendo...</a>
-        </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-md-6">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <h3 class="mb-0">Noticias</h3>
-          <div class="mb-1 text-muted">7 julio</div>
-          <p class="mb-auto">Kazuki Takahashi: qué se sabe de la muerte del creador de la exitosa saga Yu-Gi-Oh!</p>
-          <a href="https://www.bbc.com/mundo/noticias-62086514" class="stretched-link">Continue reading</a>
-        </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-</main>
+@yield('Body')
 
 {{-- footer --}}
 
+@yield('Footer')
+
 <footer class="blog-footer">
-  <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-  <p>
-    <a href="#">Back to top</a>
-  </p>
+  <p>Bibliotek© 2022 Ana Helena Hernandez Hernandez para clase de Desarollo Web UPQ. No derechos reservados</p>
   <?php
     $date = new DateTime();
-    $current_timestamp = $date->getTimestamp();
+    $hoy = date_format($date, 'd/m/Y');
+    echo "<p>La fecha de hoy es: ".$hoy. "</p>"
   ?>
 
 </footer>

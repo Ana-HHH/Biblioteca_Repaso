@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\FormController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +15,26 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/// VISTAS
+Route::controller( ViewsController::class )->group(
+    function () {
+    Route::get('form', 'gotoForm') ->name('form');
+    Route::get('/', 'gotoHome')->name('index');
+}
+);
 
+// Route::get('/', function () {
+//     return view('index');
+// });
+// Route::get('form', function () {
+//     return view('form');
+// });
+
+///CONTROLADORES
+
+Route::get('/', function () {
+    return view('index');
+});
 Route::get('/', function () {
     return view('index');
 });
