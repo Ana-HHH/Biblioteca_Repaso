@@ -19,7 +19,7 @@ use App\Http\Controllers\FormController;
 Route::controller( ViewsController::class )->group(
     function () {
     Route::get('form', 'gotoForm') ->name('form');
-    Route::get('/', 'gotoHome')->name('index');
+    Route::get('index', 'gotoHome')->name('index');
 }
 );
 
