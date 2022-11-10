@@ -13,4 +13,8 @@ class ViewsController extends Controller
         return view('index');
     }
 
+    public function gotoClientNew() {
+        return view('clientnew');
+    }
+
 }

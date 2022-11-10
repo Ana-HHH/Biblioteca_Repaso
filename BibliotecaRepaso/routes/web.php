@@ -20,6 +20,7 @@ Route::controller( ViewsController::class )->group(
     function () {
     Route::get('form', 'gotoForm') ->name('form');
     Route::get('index', 'gotoHome')->name('index');
+    Route::get('clientnew', 'gotoClientNew')->name('clientnew');
 }
 );
 
@@ -32,9 +33,5 @@ Route::controller( ViewsController::class )->group(
 
 ///CONTROLADORES
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/', function () {
-    return view('index');
-});
+Route::post('form', [FormController::class, 'processForm']);
+Route::post('clientnew', [FormController::class, 'processNewClient']);

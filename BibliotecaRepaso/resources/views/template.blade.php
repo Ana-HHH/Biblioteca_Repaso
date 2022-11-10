@@ -55,8 +55,9 @@
         href="index">Pagina Inicio</a>
       <a class="p-2 link-secondary" style="font-weight: {{request() -> routeIS('form') ? 'bold': ''}}"
         href="form">Registrar Libro</a>
-      <a class="p-2 link-secondary" href="#">Sistema Busqueda</a>
-      <a class="p-2 link-secondary" href="#">Noticias</a>
+      <a class="p-2 link-secondary" style="font-weight: {{request() -> routeIS('clientnew') ? 'bold': ''}}"
+        href="clientnew">Registrar Cliente</a>
+      <a class="p-2 link-secondary" href="#">Todas las Noticias</a>
     </nav>
   </div>
 </div>
