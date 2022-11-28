@@ -53,10 +53,12 @@
     <nav class="nav d-flex justify-content-between">
       <a class="p-2 link-secondary" style="font-weight: {{request() -> routeIS('index') ? 'bold': ''}}"
         href="index">Pagina Inicio</a>
+      {{-- <a class="p-2 link-secondary" style="font-weight: {{request() -> routeIS('recuerdos.create') ? 'bold': ''}}"
+        href="recuerdos">Recuerdos</a> --}}
       <a class="p-2 link-secondary" style="font-weight: {{request() -> routeIS('form') ? 'bold': ''}}"
-        href="form">Registrar Libro</a>
+        href="form">Libros</a>
       <a class="p-2 link-secondary" style="font-weight: {{request() -> routeIS('clientnew') ? 'bold': ''}}"
-        href="clientnew">Registrar Cliente</a>
+        href="clientnew">Clientes</a>
       <a class="p-2 link-secondary" href="#">Todas las Noticias</a>
     </nav>
   </div>

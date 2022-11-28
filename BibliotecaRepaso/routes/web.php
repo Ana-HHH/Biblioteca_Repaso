@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewsController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\ControladorBD;
 
 
 /*
@@ -20,6 +21,7 @@ Route::controller( ViewsController::class )->group(
     function () {
     Route::get('form', 'gotoForm') ->name('form');
     Route::get('index', 'gotoHome')->name('index');
+    Route::get('recuerdos', 'gotoRecuerdos')->name('recuerdos');
     Route::get('clientnew', 'gotoClientNew')->name('clientnew');
 }
 );
@@ -35,3 +37,10 @@ Route::controller( ViewsController::class )->group(
 
 Route::post('form', [FormController::class, 'processForm']);
 Route::post('clientnew', [FormController::class, 'processNewClient']);
+Route::post('recuerdos', [FormController::class, 'processNewRecuerdo']);
+
+//CONTROLADOR BD
+
+Route::get('recuerdos/create', [ControladorBD::class, 'create'])->name('recuerdos.create');
+Route::post('recuerdo/store', [ControladorBD::class, 'store'])->name('recuerdo.store');
+Route::post('recuerdo', [ControladorBD::class, 'index'])->name('recuerdo.index');
