@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClientNewValidator extends FormRequest
+class BookValidator extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,11 @@ class ClientNewValidator extends FormRequest
     public function rules()
     {
         return [
-            'NombreCliente' => 'required|min:4',
-            'EmailCliente' => 'required|email',
-            'NoINE' => 'required|numeric|digits_between:10,100',
+            'ISBN' => 'required|numeric|digits_between:13,100',
+            'titulo' => 'required',
+            'autor' => 'required',
+            'paginas' => 'required|numeric',
+            'editorial' => 'required|email'
         ];
     }
 }

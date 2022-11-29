@@ -16,7 +16,7 @@
     @section('Body')
     @if (session()->has('message'))
         <div class="alert alert-success" role="alert">
-           El recuerdo se ha registrado
+           El usuario se ha registrado
         </div>
     @endif
 
@@ -26,33 +26,44 @@
   
             <div class="card">
                 <div class="card-header text-center font-weight-bold">
-                    Registrar Nuevo Recuerdo</div>
+                    Registrar Cliente Nuevo</div>
                 <div class="card-body">
-                  <form name="add-blog-post-form" id="add-blog-post-form" method="POST" action="recuerdo">
+                  <form name="add-blog-post-form" id="add-blog-post-form" method="POST" action="client">
                   @csrf
   
                     <div class="form-group">
-                      <label for="Titulo">Titulo</label>
-                      <input type="text" id="txtTitulo" name="txtTitulo" class="form-control" value="{{ old('txtTitulo') }}">
+                      <label for="NombreCliente">Nombre Completo</label>
+                      <input type="text" id="NombreCliente" name="NombreCliente" class="form-control" value="{{ old('NombreCliente') }}">
                     </div>
-                    @if ($errors->has('txtTitulo'))
+                    @if ($errors->has('NombreCliente'))
                         <div class="alert alert-warning col" role="alert">
-                            <strong>{{ $errors->first('txtTitulo') }}</strong>
+                            <strong>{{ $errors->first('NombreCliente') }}</strong>
                             <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                         </div>
                     @endif
 
                     <div class="form-group">
-                      <label for="Recuerdo">Recuerdo</label>
-                      <input type="text" id="txtRecuerdo" name="txtRecuerdo" class="form-control" value="{{ old('txtRecuerdo') }}" >
+                      <label for="EmailCliente">Email</label>
+                      <input type="text" id="EmailCliente" name="EmailCliente" class="form-control" value="{{ old('EmailCliente') }}" >
                     </div>
-                    @if ($errors->has('txtRecuerdo'))
+                    @if ($errors->has('EmailCliente'))
                         <div class="alert alert-warning col" role="alert">
-                            <strong>{{ $errors->first('txtRecuerdo') }}</strong>
+                            <strong>{{ $errors->first('EmailCliente') }}</strong>
                             <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                         </div>
                     @endif                    
   
+                    <div class="form-group">
+                      <label for="NoINE">No. INE</label>
+                      <input id="NoINE" name="NoINE" class="form-control" value="{{ old('NoINE') }}">
+                    </div>
+                    @if ($errors->has('NoINE'))
+                        <div class="alert alert-warning col" role="alert">
+                            <strong>{{ $errors->first('NoINE') }}</strong>
+                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+
                     <button type="submit" class="btn btn-primary mt-5">Registrar</button>
                   </form>
                 </div>

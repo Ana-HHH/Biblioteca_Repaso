@@ -19,28 +19,22 @@ use App\Http\Controllers\ControladorBD;
 /// VISTAS
 Route::controller( ViewsController::class )->group(
     function () {
-    Route::get('form', 'gotoForm') ->name('form');
+    Route::get('book', 'gotoBook') ->name('book');
     Route::get('index', 'gotoHome')->name('index');
-    Route::get('recuerdos', 'gotoRecuerdos')->name('recuerdos');
-    Route::get('clientnew', 'gotoClientNew')->name('clientnew');
+    Route::get('client', 'gotoClient')->name('client');
 }
 );
 
-// Route::get('/', function () {
-//     return view('index');
-// });
+Route::get('/', function () {
+    return view('index');
+});
 // Route::get('form', function () {
 //     return view('form');
 // });
 
 ///CONTROLADORES
 
-Route::post('form', [FormController::class, 'processForm']);
-Route::post('clientnew', [FormController::class, 'processNewClient']);
-Route::post('recuerdos', [FormController::class, 'processNewRecuerdo']);
+Route::post('book', [FormController::class, 'processBook']);
+Route::post('client', [FormController::class, 'processClient']);
 
 //CONTROLADOR BD
-
-Route::get('recuerdos/create', [ControladorBD::class, 'create'])->name('recuerdos.create');
-Route::post('recuerdo/store', [ControladorBD::class, 'store'])->name('recuerdo.store');
-Route::post('recuerdo', [ControladorBD::class, 'index'])->name('recuerdo.index');
