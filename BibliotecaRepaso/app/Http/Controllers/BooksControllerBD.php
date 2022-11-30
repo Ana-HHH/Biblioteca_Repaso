@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\BookValidator;
+use DB;
+use Carbon\Carbon;
+
 
 class BooksControllerBD extends Controller
 {
@@ -13,7 +17,9 @@ class BooksControllerBD extends Controller
      */
     public function index()
     {
-        //
+        $resultRec = DB::table('tb_books') -> get();
+        return view('book', compact('resultRec'));
+
     }
 
     /**
@@ -23,7 +29,6 @@ class BooksControllerBD extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -32,9 +37,20 @@ class BooksControllerBD extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookValidator $request)
     {
-        //
+
+        DB::table('tb_books')->insert([
+            'ISBN' => $request -> input('ISBN'),
+            'Title' => $request -> input('titulo'),
+            'Author' => $request -> input('autor'),
+            'Pages' => $request -> input('paginas'),
+            'Publisher' => $request -> input('editorial'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        return redirect('book') ->with('validInsert', 'Recuerdo guardado');
+
     }
 
     /**
@@ -45,7 +61,7 @@ class BooksControllerBD extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -56,7 +72,9 @@ class BooksControllerBD extends Controller
      */
     public function edit($id)
     {
-        //
+        $consultaID = DB::table('tb_books')-> where('ID_Book', $id)->first();
+        return view('bookUpdate', compact('consultaID'));
+
     }
 
     /**
@@ -68,7 +86,16 @@ class BooksControllerBD extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('tb_books')->where('ID_Book', $id)->update([
+            'ISBN' => $request -> input('ISBN'),
+            'Title' => $request -> input('titulo'),
+            'Author' => $request -> input('autor'),
+            'Pages' => $request -> input('paginas'),
+            'Publisher' => $request -> input('editorial'),
+            'updated_at' => Carbon::now(),
+        ]);
+        return redirect('book') ->with('validUpdate', 'Recuerdo guardado');
+
     }
 
     /**
@@ -79,6 +106,8 @@ class BooksControllerBD extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('tb_books')->where('ID_Book', $id)->delete();
+        return redirect('book') ->with('validDelete', 'Recuerdo eliminado');
+
     }
 }

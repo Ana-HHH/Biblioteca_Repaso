@@ -10,7 +10,7 @@ use App\Http\Requests\RecuerdoValidator;
 class FormController extends Controller
 {
     public function processBooks(BooksValidator $req){
-        return redirect('/book')->with('message', 'success');
+        return redirect('book.create')->with('message', 'success');
     }
 
     public function processClient(ClientValidator $req) {
