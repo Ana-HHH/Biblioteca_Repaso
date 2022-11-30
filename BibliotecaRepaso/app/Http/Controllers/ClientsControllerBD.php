@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ClientValidator;
+use DB;
+use Carbon\Carbon;
 
 class ClientsControllerBD extends Controller
 {
@@ -13,7 +16,9 @@ class ClientsControllerBD extends Controller
      */
     public function index()
     {
-        //
+        $resultRec = DB::table('tb_clients') -> get();
+        return view('client', compact('resultRec'));
+
     }
 
     /**
@@ -32,9 +37,17 @@ class ClientsControllerBD extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClientValidator $request)
     {
-        //
+        DB::table('tb_clients')->insert([
+            'Name' => $request -> input('NombreCliente'),
+            'Email' => $request -> input('EmailCliente'),
+            'INE' => $request -> input('NoINE'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        return redirect('client') ->with('validInsert', 'Recuerdo guardado');
+
     }
 
     /**
@@ -56,7 +69,9 @@ class ClientsControllerBD extends Controller
      */
     public function edit($id)
     {
-        //
+        $consultaID = DB::table('tb_clients')-> where('ID_Client', $id)->first();
+        return view('clientUpdate', compact('consultaID'));
+
     }
 
     /**
@@ -66,9 +81,16 @@ class ClientsControllerBD extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ClientValidator $request, $id)
     {
-        //
+        DB::table('tb_clients')->where('ID_Client', $id)->update([
+            'Name' => $request -> input('NombreCliente'),
+            'Email' => $request -> input('EmailCliente'),
+            'INE' => $request -> input('NoINE'),
+            'updated_at' => Carbon::now(),
+        ]);
+        return redirect('client') ->with('validUpdate', 'Recuerdo guardado');
+
     }
 
     /**
@@ -79,6 +101,8 @@ class ClientsControllerBD extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('tb_clients')->where('ID_Client', $id)->delete();
+        return redirect('client') ->with('validDelete', 'Recuerdo eliminado');
+
     }
 }

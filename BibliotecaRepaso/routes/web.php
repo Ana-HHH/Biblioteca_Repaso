@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewsController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\BooksControllerBD;
+use App\Http\Controllers\ClientsControllerBD;
 
 
 /*
@@ -46,10 +47,10 @@ Route::delete('book/{id}', [BooksControllerBD::class, 'destroy'])->name('book.de
 
 //CONTROLADOR BD CLIENTS
 //index
-// Route::get('client', [ClientsControllerBD::class, 'index'])->name('client.index');
+Route::get('client', [ClientsControllerBD::class, 'index'])->name('client.index');
 // //insert
-// Route::post('client/store', [ClientsControllerBD::class, 'store'])->name('client.store');
+Route::post('client/store', [ClientsControllerBD::class, 'store'])->name('client.store');
 // //update
-// Route::put('client/{id}', [ClientsControllerBD::class, 'update'])->name('client.update');
+Route::put('client/{id}', [ClientsControllerBD::class, 'update'])->name('client.update');
 // //delete
-// Route::delete('client/{id}', [ClientsControllerBD::class, 'destroy'])->name('client.destroy');
+Route::delete('client/{id}', [ClientsControllerBD::class, 'destroy'])->name('client.destroy');

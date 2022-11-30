@@ -53,10 +53,10 @@
     <nav class="nav d-flex justify-content-between">
       <a class="p-2 link-secondary" style="font-weight: {{request() -> routeIS('index') ? 'bold': ''}}"
         href="index">Pagina Inicio</a>
-      <a class="p-2 link-secondary" style="font-weight: {{request() -> routeIS('book') ? 'bold': ''}}"
+      <a class="p-2 link-secondary" style="font-weight: {{request() -> routeIS('book.index') ? 'bold': ''}}"
         href="book">Libros</a>
-      <a class="p-2 link-secondary" style="font-weight: {{request() -> routeIS('client') ? 'bold': ''}}"
-        href="client">Clientes</a>
+      <a class="p-2 link-secondary" style="font-weight: {{request() -> routeIS('client.index') ? 'bold': ''}}"
+        href="{{route('client.index')}}">Clientes</a>
       <a class="p-2 link-secondary" href="#">Todas las Noticias</a>
     </nav>
   </div>
