@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewsController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\BooksControllerBD;
 
 
 /*
@@ -18,20 +19,37 @@ use App\Http\Controllers\FormController;
 /// VISTAS
 Route::controller( ViewsController::class )->group(
     function () {
-    Route::get('form', 'gotoForm') ->name('form');
+    Route::get('book', 'gotoBook') ->name('book');
     Route::get('index', 'gotoHome')->name('index');
-    Route::get('clientnew', 'gotoClientNew')->name('clientnew');
+    Route::get('client', 'gotoClient')->name('client');
 }
 );
 
-// Route::get('/', function () {
-//     return view('index');
-// });
+Route::get('/', function () {
+    return view('index');
+});
 // Route::get('form', function () {
 //     return view('form');
 // });
 
 ///CONTROLADORES
 
-Route::post('form', [FormController::class, 'processForm']);
-Route::post('clientnew', [FormController::class, 'processNewClient']);
+//CONTROLADOR BD BOOKS
+//index
+Route::get('book', [BooksControllerBD::class, 'index'])->name('book.index');
+//insert
+Route::post('book/store', [BooksControllerBD::class, 'store'])->name('book.store');
+//update
+Route::put('book/{id}', [BooksControllerBD::class, 'update'])->name('book.update');
+//delete
+Route::delete('book/{id}', [BooksControllerBD::class, 'destroy'])->name('book.destroy');
+
+//CONTROLADOR BD CLIENTS
+//index
+// Route::get('client', [ClientsControllerBD::class, 'index'])->name('client.index');
+// //insert
+// Route::post('client/store', [ClientsControllerBD::class, 'store'])->name('client.store');
+// //update
+// Route::put('client/{id}', [ClientsControllerBD::class, 'update'])->name('client.update');
+// //delete
+// Route::delete('client/{id}', [ClientsControllerBD::class, 'destroy'])->name('client.destroy');

@@ -28,7 +28,7 @@
                 <div class="card-header text-center font-weight-bold">
                     Registrar Cliente Nuevo</div>
                 <div class="card-body">
-                  <form name="add-blog-post-form" id="add-blog-post-form" method="POST" action="clientnew">
+                  <form name="add-blog-post-form" id="add-blog-post-form" method="POST" action="client">
                   @csrf
   
                     <div class="form-group">

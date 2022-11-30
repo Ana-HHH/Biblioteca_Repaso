@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 
 class ViewsController extends Controller
 {
-    public function gotoForm() {
-        return view('form');
+    public function gotoBook() {
+        return view('book');
     }
     public function gotoHome() {
         return view('index');
     }
 
-    public function gotoClientNew() {
-        return view('clientnew');
+    public function gotoClient() {
+        return view('client');
     }
 
 }
