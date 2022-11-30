@@ -87,7 +87,7 @@
                                                 </div>
                                             @endif
 
-                                            <button type="submit" class="btn btn-primary mt-5">Agregar</button>
+                                            <button type="submit" class="btn btn-primary mt-5">Actualizar</button>
                                         </form>
                                     </div>
                                 </div>

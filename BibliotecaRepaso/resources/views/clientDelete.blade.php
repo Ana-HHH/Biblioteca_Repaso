@@ -1,15 +1,14 @@
-{{-- Modal Book Delete  --}}
 @foreach ($resultRec as $consulta)
-    <div class="modal fade" id="bookDelete{{ $consulta->ID_Book }}" tabindex="-1" aria-labelledby="bookDeleteLabel"
+    <div class="modal fade" id="clientDelete{{ $consulta->ID_Client }}" tabindex="-1" aria-labelledby="clientDeleteLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">
-                        Seguro que Quieres Eliminar
-                    </h5>
+                    <h5 class="modal-title" id="clientDeleteLabel">Eliminar Cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+
                     <div class="alert alert-danger text-center font-weight-bold" role="alert">
                         Seguro que quieres eliminar el siguiente Registro?
                     </div>
@@ -18,21 +17,19 @@
                         <div class="row">
                             <div class="col">
 
-                                <h1 class="mb-0"> {{ $consulta->Title }}</h1>
+                                <h1 class="mb-0"> {{ $consulta->Name }}</h1>
 
-                                <div class="mb-1 text-muted">{{ $consulta->Author }}</div>
+                                <div class="mb-1 text-muted">{{ $consulta->Email }}</div>
 
                                 <br>
-                                <p class="mb-0">ISBN : {{ $consulta->ISBN }}</p>
+                                <p class="mb-0">INE : {{ $consulta->INE }}</p>
                                 <br>
-                                <p>Editorial: {{ $consulta->Publisher }}</p>
-                                <p> Numero de Paginas: {{ $consulta->Pages }}</p>
                             </div>
-                            <form method="POST" action="{{ route('book.destroy', $consulta->ID_Book) }}">
+                            <form method="POST" action="{{ route('client.destroy', $consulta->ID_Client) }}">
                                 @csrf
                                 @method('delete')
 
-                                <button type="submit" class="btn btn-danger">Eliminar </button>
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
                         </div>
                     </div>

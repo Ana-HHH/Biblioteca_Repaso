@@ -36,43 +36,20 @@
             </div>
         @endif
 
-        @if ($errors->has('ISBN'))
-            <div class="alert alert-warning col" role="alert">
-                <strong>{{ $errors->first('ISBN') }}</strong>
-                <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-        @if ($errors->has('titulo'))
-            <div class="alert alert-warning col" role="alert">
-                <strong>{{ $errors->first('titulo') }}</strong>
-                <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
-            </div>
-            @if ($errors->has('paginas'))
-                <div class="alert alert-warning col" role="alert">
-                    <strong>{{ $errors->first('paginas') }}</strong>
-                    <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
+        <div class="container mt-4 mb-4">
+            <div class="row">
+                <div class="col">
+
+
+                    <button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#bookInsert">
+                        Agregar Libro
+                        <span class="material-symbols-outlined">
+                            library_add
+                        </span>
+                    </button>
                 </div>
-            @endif
-            @if ($errors->has('editorial'))
-                <div class="alert alert-warning col" role="alert">
-                    <strong>{{ $errors->first('editorial') }}</strong>
-                    <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
-                </div>
-            @endif
-        @endif
-        @if ($errors->has('autor'))
-            <div class="alert alert-warning col" role="alert">
-                <strong>{{ $errors->first('autor') }}</strong>
-                <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
             </div>
-        @endif
-
-
-
-
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#bookInsert">
-            Agregar
-        </button>
+        </div>
 
 
         @foreach ($resultRec as $consulta)
@@ -83,7 +60,7 @@
                         <div class="card">
                             <div class="card-header font-weight-bold">
                                 <h1 class="mb-0"> {{ $consulta->Title }}</h1>
-
+                            
                                 <div class="mb-1 text-muted">{{ $consulta->Author }}</div>
 
                             </div>
@@ -96,7 +73,17 @@
                             </div>
 
                             <div class="card-footer">
-                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                <div class="d-flex flex-row-reverse bd-highlight">
+
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#bookDelete{{ $consulta->ID_Book }}">
+                                    Borrar
+                                    <span class="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                </button>
+
+                                <button type="button" class="btn btn-warning mx-5" data-bs-toggle="modal"
                                     data-bs-target="#bookUpdate{{ $consulta->ID_Book }}">
                                     Actualizar
                                     <span class="material-symbols-outlined">
@@ -105,20 +92,14 @@
                                 </button>
 
 
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#bookDelete{{ $consulta->ID_Book }}">
-                                    Borrar
-                                    <span class="material-symbols-outlined">
-                                        delete
-                                    </span>
-                                </button>
+
+                                </div>
                             </div>
 
                         </div>
 
                     </div>
                 </div>
-            </div>
             </div>
         @endforeach
     @endsection

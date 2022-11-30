@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Client New</title>
 </head>
+
 <body>
 
     @extends('template')
@@ -14,70 +16,91 @@
     @endsection
 
     @section('Body')
-    @if (session()->has('message'))
-        <div class="alert alert-success" role="alert">
-           El usuario se ha registrado
-        </div>
-    @endif
+        @include('clientInsert')
+        @include('clientUpdate')
+        @include('clientDelete')
 
-    <div class="container mt-4 mb-4">
-        <div class="row">
-          <div class="col">
-  
-            <div class="card">
-                <div class="card-header text-center font-weight-bold">
-                    Registrar Cliente Nuevo</div>
-                <div class="card-body">
-                  <form name="add-blog-post-form" id="add-blog-post-form" method="POST" action="client">
-                  @csrf
-  
-                    <div class="form-group">
-                      <label for="NombreCliente">Nombre Completo</label>
-                      <input type="text" id="NombreCliente" name="NombreCliente" class="form-control" value="{{ old('NombreCliente') }}">
-                    </div>
-                    @if ($errors->has('NombreCliente'))
-                        <div class="alert alert-warning col" role="alert">
-                            <strong>{{ $errors->first('NombreCliente') }}</strong>
-                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
-                        </div>
-                    @endif
+        @if (session()->has('validInsert'))
+            <div class="alert alert-success" role="alert">
+                El usuario se ha registrado
+            </div>
+        @endif
+        @if (session()->has('validUpdate'))
+            <div class="alert alert-success" role="alert">
+                El usuario se ha actualizado
+            </div>
+        @endif
+        @if (session()->has('validDelete'))
+            <div class="alert alert-success" role="alert">
+                El usuario se ha borrado
+            </div>
+        @endif
 
-                    <div class="form-group">
-                      <label for="EmailCliente">Email</label>
-                      <input type="text" id="EmailCliente" name="EmailCliente" class="form-control" value="{{ old('EmailCliente') }}" >
-                    </div>
-                    @if ($errors->has('EmailCliente'))
-                        <div class="alert alert-warning col" role="alert">
-                            <strong>{{ $errors->first('EmailCliente') }}</strong>
-                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
-                        </div>
-                    @endif                    
-  
-                    <div class="form-group">
-                      <label for="NoINE">No. INE</label>
-                      <input id="NoINE" name="NoINE" class="form-control" value="{{ old('NoINE') }}">
-                    </div>
-                    @if ($errors->has('NoINE'))
-                        <div class="alert alert-warning col" role="alert">
-                            <strong>{{ $errors->first('NoINE') }}</strong>
-                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
-                        </div>
-                    @endif
 
-                    <button type="submit" class="btn btn-primary mt-5">Registrar</button>
-                  </form>
+        <div class="container mt-4 mb-4">
+            <div class="row">
+                <div class="col">
+
+
+                    <button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#clientInsert">
+                        Agregar Cliente
+                        <span class="material-symbols-outlined">
+                            person_add
+                        </span>
+                    </button>
                 </div>
-              </div>
-  
-          </div>
+            </div>
         </div>
-      </div>
-  
+
+        @foreach ($resultRec as $consulta)
+            <div class="container mt-4 mb-4">
+                <div class="row">
+                    <div class="col">
+
+                        <div class="card">
+                            <div class="card-header font-weight-bold">
+                                <h1 class="mb-0"> {{ $consulta->Name }}</h1>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="mb-0">Correo : {{ $consulta->Email }}</p>
+                                <br>
+                                <p>INE: {{ $consulta->INE }}</p>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="d-flex flex-row-reverse bd-highlight">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#clientDelete{{ $consulta->ID_Client }}">
+                                        Borrar
+                                        <span class="material-symbols-outlined">
+                                            person_remove
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-warning mx-5 " data-bs-toggle="modal"
+                                        data-bs-target="#clientUpdate{{ $consulta->ID_Client }}">
+                                        Actualizar
+                                        <span class="material-symbols-outlined">
+                                            manage_accounts
+                                        </span>
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        @endforeach
     @endsection
 
     @section('Footer')
     @endsection
 
-    
+
 </body>
+
 </html>
